@@ -43,7 +43,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         } else if (!country) {
           event.preventDefault();
           trackRegisterError('країна не обрана', null);
-        } else if (/* логіка для перевірки наявності емейлу */) {
+        } else if (!email) {
           event.preventDefault();
           trackRegisterError('користувач з таким емейлом вже існує', email);
         }
