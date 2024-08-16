@@ -7,34 +7,6 @@
   gtag('js', new Date());
 
   gtag('config', 'G-YTR43EF4J3');
-  
-  function trackRegisterError(description, email) {
-    gtag('event', 'register_error', {
-      'error_description': description,
-      'user_email': email || 'N/A'
-    });
-  }
-
-  document.querySelector('#registerForm').addEventListener('submit', function(event) {
-    var email = document.querySelector('#emailField').value;
-    var password = document.querySelector('#passwordField').value;
-    var agreement = document.querySelector('#agreementCheckbox').checked;
-    var country = document.querySelector('#countryDropdown').value;
-    
-    if (!password) {
-      event.preventDefault();
-      trackRegisterError('пароль не введений', null);
-    } else if (!agreement) {
-      event.preventDefault();
-      trackRegisterError('поле не заповнено', null);
-    } else if (!country) {
-      event.preventDefault();
-      trackRegisterError('країна не обрана', null);
-    } else if (/* логіка для перевірки наявності емейлу */) {
-      event.preventDefault();
-      trackRegisterError('користувач з таким емейлом вже існує', email);
-    }
-  });
 </script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,6 +20,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NW3WTZ5Q"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+    <script>
+      function trackRegisterError(description, email) {
+        gtag('event', 'register_error', {
+          'error_description': description,
+          'user_email': email || 'N/A'
+        });
+      }
+    
+      document.querySelector('#registerForm').addEventListener('submit', function(event) {
+        var email = document.querySelector('#emailField').value;
+        var password = document.querySelector('#passwordField').value;
+        var agreement = document.querySelector('#agreementCheckbox').checked;
+        var country = document.querySelector('#countryDropdown').value;
+        
+        if (!password) {
+          event.preventDefault();
+          trackRegisterError('пароль не введений', null);
+        } else if (!agreement) {
+          event.preventDefault();
+          trackRegisterError('поле не заповнено', null);
+        } else if (!country) {
+          event.preventDefault();
+          trackRegisterError('країна не обрана', null);
+        } else if (/* логіка для перевірки наявності емейлу */) {
+          event.preventDefault();
+          trackRegisterError('користувач з таким емейлом вже існує', email);
+        }
+      });
+    </script>
     <form action="#" id="registerForm">
       <label for="emailField">Email</label>
       <input type="email" name="email" id="emailField">
